@@ -1,0 +1,25 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+  receiver: 'mail'
+
+receivers:
+  - name: 'mail'
+    email_configs:
+      - to: 'amitmaman1235@gmail.com'
+        from: 'amitmaman1235@gmail.com'
+        smarthost: 'smtp.gmail.com:587'
+        auth_username: 'amitmaman1235@gmail.com'
+        auth_password: 'arla mgga jvhu jxyz'
+        tls_config:
+          insecure_skip_verify: false
+        send_resolved: true
+        html: '{{ template "email.html" . }}'
+
+templates:
+  - '/etc/alertmanager/alertmanager.tmpl'

@@ -1,0 +1,29 @@
+{{ define "email.html" }}
+  <h1>{{ template "__subject" . }}</h1>
+  {{ range .Alerts }}
+    {{ if .Annotations.summary }}
+      <p><strong>Summary:</strong> {{ .Annotations.summary }}</p>
+    {{ end }}
+    <p><strong>Description:</strong> {{ .Annotations.description }}</p>
+    {{ if gt (len .Labels) 0 }}
+      <p><strong>Labels:</strong>
+      <ul>
+        {{ range $key, $value := .Labels }}
+          <li><strong>{{ $key }}</strong>: {{ $value }}</li>
+        {{ end }}
+      </ul>
+      </p>
+    {{ end }}
+    <p><strong>Status:</strong> {{ .Status }}</p>
+    <hr>
+  {{ end }}
+{{ end }}
+
+{{ define "__subject" }}
+  {{ $summary := .CommonAnnotations.summary }}
+  {{ if eq .Status "firing" }}
+    🔥 [FIRING: {{ .Alerts.Firing | len }}] {{ if $summary }}{{ $summary }}{{ else }}Alert Firing{{ end }}
+  {{ else if eq .Status "resolved" }}
+    ✅ [RESOLVED] {{ if $summary }}{{ $summary }}{{ else }}Alert Resolved{{ end }}
+  {{ end }}
+{{ end }}
