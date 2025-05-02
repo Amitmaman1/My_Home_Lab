@@ -11,7 +11,7 @@ services:
       - prometheus_data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
-      - '--web.external-url=http://localhost:9090/' # Adjust if needed
+      - '--web.external-url=http://localhost:9090/' 
     depends_on:
       - alertmanager
     networks:
@@ -26,7 +26,7 @@ services:
       - ./alertmanager/alertmanager.tmpl:/etc/alertmanager/alertmanager.tmpl
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
-      - '--web.external-url=http://localhost:9093/' # Adjust if needed
+      - '--web.external-url=http://localhost:9093/' 
     networks:
       - monitoring
   nodeexporter:
@@ -47,7 +47,7 @@ services:
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
     environment:
       - GF_AUTH_ADMIN_USER=admin
-      - GF_AUTH_ADMIN_PASSWORD=admin # Change this!
+      - GF_AUTH_ADMIN_PASSWORD=admin 
     depends_on:
       - prometheus
     networks:
