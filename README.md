@@ -24,8 +24,12 @@ This approach highlights the ability to design and maintain systems that are bot
 - **Configuration**: Pi-hole runs inside a Docker container, blocking ads across the entire network.
 
 ## 5. **Prometheus, Alertmanager, and Grafana - System Monitoring & Alerts**
-- **Description**: Prometheus is used to collect system metrics, Alertmanager handles alerts, and Grafana provides real-time dashboards for monitoring the health and performance of the system.
-- **Configuration**: All components are running inside Docker containers to provide a comprehensive monitoring solution.
+- **Description**: Prometheus collects system metrics, Alertmanager handles alerts, and Grafana provides real-time dashboards for monitoring the health and performance of the system.
+- **Configuration**: 
+   - **Prometheus** collects system data and metrics from various services running on the Raspberry Pi.
+   - **Alertmanager** is integrated with Prometheus and sends alerts for critical system states (such as high CPU usage or disk space issues) via email.
+   - **Grafana** visualizes the data collected by Prometheus, providing customizable and interactive dashboards that allow for real-time monitoring of the system's health and performance.
+   - All components are deployed within Docker containers to provide a modular and scalable solution for system monitoring.
 
 ## 6. **Immich - Media Backup and Management**
 - **Description**: Immich is used for managing and backing up media files (images and videos).
@@ -36,7 +40,7 @@ This approach highlights the ability to design and maintain systems that are bot
 - **Plex**: The Plex server is running in a Docker container, connected to the Samba shared `cloud` folder for media storage.
 - **Tailscale**: Secure remote access to the Raspberry Pi is configured through Tailscale, providing encrypted connections.
 - **Pi-hole**: Pi-hole blocks advertisements and tracking at the network level, running in a Docker container.
-- **Prometheus, Alertmanager, and Grafana**: These monitoring tools collect real-time metrics, handle alerts, and visualize system performance via Grafana dashboards.
+- **Prometheus, Alertmanager, and Grafana**: These monitoring tools collect real-time metrics, handle alerts (with email notifications), and visualize system performance via Grafana dashboards.
 - **Immich**: Immich runs inside Docker, allowing efficient media backup and management.
 
 ## Automation with Docker Compose
