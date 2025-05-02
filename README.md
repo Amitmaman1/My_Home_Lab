@@ -58,7 +58,7 @@ By using Docker for all services, orchestrated with Docker Compose, the setup sh
 | Grafana       | `http://<raspberry-pi-ip>:3000`                 |
 | Prometheus    | `http://<raspberry-pi-ip>:9090`                 |
 | Alertmanager  | `http://<raspberry-pi-ip>:9093`                 |
-| Immich        | `http://<raspberry-pi-ip>:3001`                 |
+| Immich        | `http://<raspberry-pi-ip>:2283`                 |
 
 ---
 
