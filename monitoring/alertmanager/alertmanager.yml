@@ -11,11 +11,11 @@ route:
 receivers:
   - name: 'mail'
     email_configs:
-      - to: 'amitmaman1235@gmail.com'
-        from: 'amitmaman1235@gmail.com'
+      - to: 'email_here'
+        from: 'email_here'
         smarthost: 'smtp.gmail.com:587'
-        auth_username: 'amitmaman1235@gmail.com'
-        auth_password: 'password'
+        auth_username: 'email_here'
+        auth_password: 'password/apppassword'
         tls_config:
           insecure_skip_verify: false
         send_resolved: true
