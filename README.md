@@ -33,26 +33,6 @@ The system is modular, automated, and monitored – reflecting key DevOps princi
 | **Alertmanager**| Alerting system                       |
 | **Immich**      | Self-hosted photo backup system       |
 
----
-
-## 🗺️ Architecture Diagram
-
-```
-[Internet]
-     |
- [Tailscale VPN]
-     |
-[Raspberry Pi 5]
-     ├── Samba (cloud folder)
-     ├── Plex (binds cloud folder)
-     ├── Pi-hole (DNS filter)
-     ├── Prometheus
-     ├── Grafana
-     ├── Alertmanager
-     └── Immich
-```
-
-_(Diagram image coming soon – will be added to `assets/architecture.png`)_
 
 ---
 
@@ -68,15 +48,21 @@ Change the script to fit your needs and then run
 ```bash
 ./samba.sh
 ```
+3. **Install Tailscale**
+```bash
+curl -fsSL https://tailscale.com/install.sh | sh
+sudo tailscale up
+```
+> You'll be prompted to authenticate via browser. Once authenticated, your Pi will be accessible via Tailscale IP.
 
-3. **Make sure Docker & Docker Compose are installed**
+4. **Make sure Docker & Docker Compose are installed**
 
-4. **Start services**
+5. **Start services**
 ```bash
 docker-compose up -d
 ```
 
-5. **Access services**
+6. **Access services**
 - **Plex**: `http://<ip>:32400/web`
 - **Grafana**: `http://<ip>:3000`
 - **Pi-hole**: `http://<ip>`
