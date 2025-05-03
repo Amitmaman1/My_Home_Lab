@@ -1,5 +1,7 @@
 # Raspberry Pi Home Server & Media Management with Monitoring
 
+![IMG_5954](https://github.com/user-attachments/assets/8989dde5-dd3f-4711-a81e-714c3f6d76ba)
+
 ## Overview
 This Raspberry Pi setup is designed to serve as a versatile home server, combining media management, secure remote access, network-wide ad-blocking, and system health monitoring. The system integrates several services, such as file sharing, media streaming, and real-time system health checks, all running in Docker containers to ensure modularity, portability, and scalability.
 
@@ -22,6 +24,8 @@ By using Docker for all services, orchestrated with Docker Compose, the setup sh
 ## 4. **Pi-hole - Network-Wide Ad & Tracker Blocking**
 - **Description**: Pi-hole is a network-wide ad blocker that prevents unwanted advertisements and tracking.
 - **Configuration**: Pi-hole runs inside a Docker container, blocking ads across the entire network.
+- ![pihole](https://github.com/user-attachments/assets/6cdf9840-f9aa-4913-90a0-6300ebc5da4c)
+
 
 ## 5. **Prometheus, Alertmanager, and Grafana - System Monitoring & Alerts**
 - **Description**: Prometheus collects system metrics, Alertmanager handles alerts, and Grafana provides real-time dashboards for monitoring the health and performance of the system.
@@ -30,6 +34,7 @@ By using Docker for all services, orchestrated with Docker Compose, the setup sh
   - **Alertmanager** sends alerts (e.g., high CPU usage, disk issues) via email or messaging services.
   - **Grafana** visualizes the data collected by Prometheus using custom dashboards.
   - All tools run in Docker containers.
+![prometheus](https://github.com/user-attachments/assets/1c5709b9-b324-42a4-b095-9e839eb2ccd4)
 
 ## 6. **Immich - Media Backup and Management**
 - **Description**: Immich is used for managing and backing up media files (images and videos).
