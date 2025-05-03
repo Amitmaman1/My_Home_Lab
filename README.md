@@ -1,89 +1,131 @@
-# Raspberry Pi Home Server & Media Management with Monitoring
+# 🏠 My Home Lab – Raspberry Pi DevOps Playground
 
-![IMG_5954](https://github.com/user-attachments/assets/8989dde5-dd3f-4711-a81e-714c3f6d76ba)
+## 🧠 Overview
+This is my personal home-lab project, designed to simulate a real-world DevOps environment using a Raspberry Pi 5.  
+It includes file sharing, media streaming, network-wide ad blocking, secure remote access, monitoring, and automation – all running in Docker containers.
 
-## Overview
-This Raspberry Pi setup is designed to serve as a versatile home server, combining media management, secure remote access, network-wide ad-blocking, and system health monitoring. The system integrates several services, such as file sharing, media streaming, and real-time system health checks, all running in Docker containers to ensure modularity, portability, and scalability.
-
-By using Docker for all services, orchestrated with Docker Compose, the setup showcases an efficient approach to managing complex systems. This containerized architecture ensures that each service is isolated, easily deployable, and can be scaled or modified without affecting the rest of the system.
-
----
-
-## 1. **Samba - File Sharing Server**
-- **Description**: Samba is configured to share files across the local network.
-- **Configuration**: The media library for Plex is stored in the `cloud` directory, which is shared via Samba.
-
-## 2. **Plex - Media Management and Streaming**
-- **Description**: Plex is used for organizing and streaming media content.
-- **Configuration**: Plex is deployed in a Docker container, with the media directory located in the `cloud` folder shared via Samba.
-
-## 3. **Tailscale - Secure Remote Access**
-- **Description**: Tailscale provides secure remote access to the Raspberry Pi, ensuring encrypted connections over the internet.
-- **Configuration**: Tailscale is set up for safe, VPN-like access to the device from anywhere.
-
-## 4. **Pi-hole - Network-Wide Ad & Tracker Blocking**
-- **Description**: Pi-hole is a network-wide ad blocker that prevents unwanted advertisements and tracking.
-- **Configuration**: Pi-hole runs inside a Docker container, blocking ads across the entire network.
-- ![pihole](https://github.com/user-attachments/assets/6cdf9840-f9aa-4913-90a0-6300ebc5da4c)
-
-
-## 5. **Prometheus, Alertmanager, and Grafana - System Monitoring & Alerts**
-- **Description**: Prometheus collects system metrics, Alertmanager handles alerts, and Grafana provides real-time dashboards for monitoring the health and performance of the system.
-- **Configuration**:
-  - **Prometheus** collects system data and metrics from various services running on the Raspberry Pi.
-  - **Alertmanager** sends alerts (e.g., high CPU usage, disk issues) via email or messaging services.
-  - **Grafana** visualizes the data collected by Prometheus using custom dashboards.
-  - All tools run in Docker containers.
-![prometheus](https://github.com/user-attachments/assets/1c5709b9-b324-42a4-b095-9e839eb2ccd4)
-
-## 6. **Immich - Media Backup and Management**
-- **Description**: Immich is used for managing and backing up media files (images and videos).
-- **Configuration**: Immich runs inside a Docker container for managing mobile and local media libraries.
+The system is modular, automated, and monitored – reflecting key DevOps principles like containerization, observability, and IaC (Infrastructure as Code).
 
 ---
 
-## Setup Details
-- **Samba**: Shared access via the `cloud` folder.
-- **Plex**: Uses the `cloud` folder from Samba as its media library.
-- **Tailscale**: Provides encrypted remote access.
-- **Pi-hole**: Blocks ads network-wide.
-- **Prometheus, Alertmanager, Grafana**: Used for system metrics, alerts, and dashboards.
-- **Immich**: Backs up and organizes media files.
+## 🎯 Goals
+- Gain hands-on experience with production-grade DevOps tools
+- Build and manage infrastructure on a low-power ARM device (Raspberry Pi 5)
+- Secure remote access to home services via Tailscale
+- Automate media sync and service health checks
+- Track metrics and alerts using Prometheus, Grafana, and Alertmanager
+- Centralize media and file sharing for personal use
 
 ---
 
-## Access Details
+## 🧰 Tech Stack
 
-| Service       | URL or Path                                     |
-|---------------|-------------------------------------------------|
-| Samba         | `\\<raspberry-pi-ip>\cloud`                     |
-| Plex          | `http://<raspberry-pi-ip>:32400`                |
-| Tailscale     | Access via [Tailscale Client](https://tailscale.com/) |
-| Pi-hole       | `http://<raspberry-pi-ip>/admin`                |
-| Grafana       | `http://<raspberry-pi-ip>:3000`                 |
-| Prometheus    | `http://<raspberry-pi-ip>:9090`                 |
-| Alertmanager  | `http://<raspberry-pi-ip>:9093`                 |
-| Immich        | `http://<raspberry-pi-ip>:2283`                 |
-
----
-
-## Requirements
-- Raspberry Pi running Raspberry Pi OS
-- Docker and Docker Compose installed and configured
+| Tool           | Purpose                               |
+|----------------|----------------------------------------|
+| **Raspberry Pi 5** | Physical host for all services     |
+| **Docker Compose** | Container orchestration           |
+| **Samba**       | File sharing (cloud folder)           |
+| **Plex**        | Media streaming platform              |
+| **Tailscale**   | Secure VPN access                     |
+| **Pi-hole**     | Network-wide DNS-based ad blocking    |
+| **Prometheus**  | System metrics collection             |
+| **Grafana**     | Visual dashboards                     |
+| **Alertmanager**| Alerting system                       |
+| **Immich**      | Self-hosted photo backup system       |
 
 ---
 
-## Automation with Docker Compose
-All services are managed via `docker-compose.yml`, allowing:
-- One-command deployment and teardown
-- Easy maintenance
-- Scalability for future services
+## 🗺️ Architecture Diagram
+
+```
+[Internet]
+     |
+ [Tailscale VPN]
+     |
+[Raspberry Pi 5]
+     ├── Samba (cloud folder)
+     ├── Plex (binds cloud folder)
+     ├── Pi-hole (DNS filter)
+     ├── Prometheus
+     ├── Grafana
+     ├── Alertmanager
+     └── Immich
+```
+
+_(Diagram image coming soon – will be added to `assets/architecture.png`)_
 
 ---
 
-## System Architecture
-Each service runs in its own Docker container. This ensures:
-- Clean modularity
-- Easier updates and upgrades
-- Reduced conflict between services
-- Full control via Docker Compose
+## 🚀 Setup & Run
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/Amitmaman1/My_Home_Lab.git
+cd My_Home_Lab
+```
+2. **Activate samba:**
+Change the script to fit your needs and then run
+```bash
+./samba.sh
+```
+
+3. **Make sure Docker & Docker Compose are installed**
+
+4. **Start services**
+```bash
+docker-compose up -d
+```
+
+5. **Access services**
+- **Plex**: `http://<ip>:32400/web`
+- **Grafana**: `http://<ip>:3000`
+- **Pi-hole**: `http://<ip>`
+- **Immich**: `http://<ip>:2283`
+
+Access can also be done remotely via **Tailscale IP**
+
+
+---
+
+## 📈 Monitoring Stack
+
+| Component      | Role                                   |
+|----------------|----------------------------------------|
+| Prometheus     | Scrapes metrics from containers         |
+| Grafana        | Displays dashboards                    |
+| Alertmanager   | Sends alerts based on Prometheus rules |
+
+---
+
+## 🧪 Automation & Features
+
+- Media folder (`cloud`) is shared via **Samba**
+- **Plex** is configured to index the same folder for streaming
+- **Tailscale** provides secure remote access without public IP
+- **Pi-hole** filters ads and trackers on the home network
+- Monitoring dashboard with **Grafana + Prometheus**
+- Infrastructure is fully containerized and reproducible
+
+
+---
+
+## 💬 Interview Notes
+
+If you're reading this as a recruiter or engineer:
+
+- This project demonstrates my initiative and ability to self-learn full DevOps practices.
+- I used containers, secure access, monitoring, automation, and storage – on constrained hardware.
+- Everything is documented, reproducible, and running in production at home.
+- I'm excited to bring this mindset and technical approach into a real DevOps team.
+
+---
+
+## 📸 Screenshots (coming soon)
+_Adding screenshots of dashboards, Plex, Pi-hole UI, and folder structure._
+
+---
+
+## 🙌 Author
+
+Built by [Amit Maman](https://github.com/Amitmaman1)
+
