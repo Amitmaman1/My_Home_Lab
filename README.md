@@ -36,6 +36,14 @@ The system is modular, automated, and monitored – reflecting key DevOps princi
 
 ---
 
+
+## 🖥️ System Architecture
+
+
+![ChatGPT Image May 8, 2025, 02_48_29 PM](https://github.com/user-attachments/assets/0cf8f002-b5f2-4fd9-9536-ff7d410623c0)
+
+
+
 ## 🚀 Setup & Run
 
 1. **Clone the repository**
@@ -73,13 +81,16 @@ Access can also be done remotely via **Tailscale IP**
 
 ---
 
-## 📈 Monitoring Stack
+### 📈 Monitoring Stack
 
 | Component      | Role                                   |
 |----------------|----------------------------------------|
 | Prometheus     | Scrapes metrics from containers         |
 | Grafana        | Displays dashboards                    |
 | Alertmanager   | Sends alerts based on Prometheus rules |
+
+All three services run on the same custom Docker network, allowing them to communicate seamlessly without exposing unnecessary ports. This setup ensures secure, isolated service discovery and clean integration between metrics collection, visualization, and alerting.
+
 
 ---
 
@@ -106,10 +117,24 @@ If you're reading this as a recruiter or engineer:
 
 ---
 
-## 📸 Screenshots (coming soon)
-_Adding screenshots of dashboards, Plex, Pi-hole UI, and folder structure._
+## 📸 Screenshots 
 
----
+
+**Grafana:**
+![grafana](https://github.com/user-attachments/assets/2829a2e0-919b-4c0e-b800-7c19fe98163c)
+
+
+
+
+**Pihole:**
+![pihole](https://github.com/user-attachments/assets/0c74b0cb-4283-4f96-b32c-66717f811458)
+
+
+
+
+**Prometheus:**
+![Promethues](https://github.com/user-attachments/assets/4dd077cd-8222-4b91-ae82-744940a4f4eb)
+
 
 ## 🙌 Author
 
