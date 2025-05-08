@@ -32,6 +32,8 @@ The system is modular, automated, and monitored – reflecting key DevOps princi
 | **Grafana**     | Visual dashboards                     |
 | **Alertmanager**| Alerting system                       |
 | **Immich**      | Self-hosted photo backup system       |
+| **Node Exporter** | Exposes OS/hardware metrics for Prometheus |
+
 
 
 ---
@@ -80,13 +82,15 @@ Access can also be done remotely via **Tailscale IP**
 
 ### 📈 Monitoring Stack
 
-| Component      | Role                                   |
-|----------------|----------------------------------------|
-| Prometheus     | Scrapes metrics from containers         |
-| Grafana        | Displays dashboards                    |
-| Alertmanager   | Sends alerts based on Prometheus rules |
+| Component      | Role                                            |
+|----------------|-------------------------------------------------|
+| Prometheus     | Scrapes metrics from services and exporters     |
+| Node Exporter  | Collects hardware & OS-level metrics from Pi    |
+| Grafana        | Displays dashboards for system & service health |
+| Alertmanager   | Sends alerts based on Prometheus rules          |
 
-All three services run on the same custom Docker network, allowing them to communicate seamlessly without exposing unnecessary ports. This setup ensures secure, isolated service discovery and clean integration between metrics collection, visualization, and alerting.
+All services run in Docker containers on the same custom network.  
+**Node Exporter** runs with special volume mounts to read system data, enabling Prometheus to monitor CPU, memory, disk, network usage, and more at the OS level.
 
 
 ---
