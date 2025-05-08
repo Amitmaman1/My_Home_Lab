@@ -37,10 +37,7 @@ The system is modular, automated, and monitored – reflecting key DevOps princi
 ---
 
 
-## 🖥️ System Architecture
-
-
-![ChatGPT Image May 8, 2025, 02_48_29 PM](https://github.com/user-attachments/assets/0cf8f002-b5f2-4fd9-9536-ff7d410623c0)
+## 🖥️ System Architecture(coming soon)
 
 
 
